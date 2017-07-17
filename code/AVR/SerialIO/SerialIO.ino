@@ -1,3 +1,12 @@
+// Apple 1 Replica firmware for Arduino
+//
+// Version 1.0
+// By Ruud van Falier
+//
+// Enables serial communication between an Arduino and the Apple 1 PIA.
+// Based on Propeller source code from Briel Computers Apple 1 replica.
+
+// Port definitions
 #define DA  A0
 #define RDA A1
 #define PB0 2
@@ -22,7 +31,7 @@ uint8_t serial_data;
 
 void setup() 
 {
-  // Video data pins
+  // Setup video data pins (output from the PIA)
   pinMode(RDA, OUTPUT);
   pinMode(DA, INPUT);
   pinMode(PB0, INPUT);
@@ -33,7 +42,7 @@ void setup()
   pinMode(PB5, INPUT);
   pinMode(PB6, INPUT);
 
-  // ASCII data pins
+  // Setup ASCII data pins (input for the PIA)
   pinMode(STROBE, OUTPUT);
   pinMode(PA0, OUTPUT);
   pinMode(PA1, OUTPUT);
@@ -44,24 +53,27 @@ void setup()
   pinMode(PA6, OUTPUT);
 
   Serial.begin(9600);
-  Serial.println("Arduino ready...");
+  Serial.println("Firmware ready...");
 }
 
 void loop() 
 {
   process_video_data();
-  process_serial_data();  
+  process_serial_data(); 
 }
 
 void process_video_data()
 {
+  // Tell the PIA we are ready to receive data.
   digitalWrite(RDA, HIGH);
-  delayMicroseconds(20);
+  delay(10);
 
   if (digitalRead(DA))
   {
+    // Data is available.
     video_data = 0;
 
+    // Decode the data bits to a byte.
     for (int i = 0; i < 7; i++)
     { 
       if (digitalRead(video_data_pins[i]))
@@ -72,36 +84,42 @@ void process_video_data()
 
     if (video_data == 13)
     {
+      // Carrage return.
       Serial.println();
     }
     else if (video_data > 31)
     {
+      // Display-compatible character.
       Serial.print((char)video_data);
     }
 
     digitalWrite(RDA, LOW);
-    delayMicroseconds(20);
+    delay(10);
   }
 }
 
 void process_serial_data()
 {
+  // Wait for serial data coming in.
   if (Serial.available() > 0) 
   {
     serial_data = Serial.read();
 
-    if (serial_data == 203) // Uppercase ESC
+    if (serial_data == 203) 
     {
+      // Translate uppercase ESC to normal ESC.
       serial_data = 27;
     }
 
-    if (serial_data >= 97 && serial_data <= 122)  // lower case a-z
+    if (serial_data >= 97 && serial_data <= 122)
     {
+      // Translate lowercase characters to uppercase as the Apple 1 only supports uppercase.
       serial_data -= 32;
     }
 
-    if (serial_data < 96)   // Is the character Apple 1 compatible?
-    {      
+    if (serial_data < 96)   
+    {
+      // Encode any Apple 1 compatible character to data bits.
       digitalWrite(PA6, bitRead(serial_data, 6));
       digitalWrite(PA5, bitRead(serial_data, 5));
       digitalWrite(PA4, bitRead(serial_data, 4));
@@ -110,20 +128,10 @@ void process_serial_data()
       digitalWrite(PA1, bitRead(serial_data, 1));
       digitalWrite(PA0, bitRead(serial_data, 0));
 
+      // Pulse the STROBE bit so the PIA will process the input.
       digitalWrite(STROBE, HIGH);
-      delayMicroseconds(20);
+      delay(20);
       digitalWrite(STROBE, LOW);
     }
-
-    /*
-    if (serial_data == 13)
-    {
-      Serial.println();
-    }
-    else
-    {
-      Serial.print((char)serial_data);
-    }
-    */
   }
 }
