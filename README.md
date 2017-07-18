@@ -1,7 +1,7 @@
 # Apple 1 Replica build
 
 This is my take on an Apple 1 replica.  
-Schematic is based on the Briel Computers Replica 1.  
+[The schematic](https://github.com/DutchMaker/Apple-1-Replica/blob/master/design/DesignSpark/schematic%20-%20Schematic.pdf) is based on learnings I took from the Briel Computers Apple Replica 1.  
 Also lot's of lessons were learned and resources taken from The Ben Heck Show: https://github.com/thebenheckshow/158-tbhs-apple-1-replica
 
 *This build is currently in progress*
