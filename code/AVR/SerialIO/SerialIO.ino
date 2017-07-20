@@ -6,7 +6,7 @@
 // Enables serial communication between an Arduino and the Apple 1 PIA.
 // Based on Propeller source code from Briel Computers Apple 1 replica.
 
-// Port definitions
+// Port definitions (PIA pins)
 #define DA  A0
 #define RDA A1
 #define PB0 2
