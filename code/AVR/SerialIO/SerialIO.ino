@@ -1,12 +1,14 @@
+// -----------------------------------------------------------------------------
 // Apple 1 Replica firmware for Arduino
 //
 // Version 1.0
 // By Ruud van Falier
 //
 // Enables serial communication between an Arduino and the Apple 1 PIA.
-// Based on Propeller source code from Briel Computers Apple 1 replica.
+// Heavily based on Propeller source code from Briel Computers Apple 1 replica.
+// -----------------------------------------------------------------------------
 
-// Port definitions (PIA pins)
+// Port definitions (Arduino pins connected to the PIA)
 #define DA  A0
 #define RDA A1
 #define PB0 2
@@ -25,9 +27,20 @@
 #define PA6 11
 #define STROBE 12
 
+// VT100 codes (u)sed for cursor implementation)
+#define OFF         "\033[0m"
+#define BLINK       "\033[5m"
+#define COLOR       "\033[35m"
+#define BLINK_COLOR "\033[5;35m"
+#define BOLD_COLOR  "\033[1;35m"
+#define CLS         "\033[2J"
+#define BACKSPACE   "\010"
+#define CURSOR_CHAR "@"
+
 uint8_t video_data = 0;
 uint8_t video_data_pins[] = { PB0, PB1, PB2, PB3, PB4, PB5, PB6 };
 uint8_t serial_data;
+bool cursor_visible = false;
 
 void setup() 
 {
@@ -53,7 +66,21 @@ void setup()
   pinMode(PA6, OUTPUT);
 
   Serial.begin(9600);
-  Serial.println("Firmware ready...");
+ 
+  cursor_visible = false;
+  Serial.print(CLS);
+  Serial.print(BOLD_COLOR);
+  Serial.println("Apple 1 Replica");
+  Serial.print(OFF);
+  Serial.print(COLOR);
+  Serial.println("Firmware version 1.0");
+  Serial.println("Ruud van Falier, 2017");
+  Serial.println("---------------------------------");
+  Serial.println();
+  Serial.println("Ready...");
+  Serial.print(OFF);
+
+  show_cursor();
 }
 
 void loop() 
@@ -62,6 +89,9 @@ void loop()
   process_serial_data(); 
 }
 
+/*
+ * Retrieves video (character) data from the PIA and sends it to the user over the serial connection.
+ */
 void process_video_data()
 {
   // Tell the PIA we are ready to receive data.
@@ -85,19 +115,31 @@ void process_video_data()
     if (video_data == 13)
     {
       // Carrage return.
+      hide_cursor();
       Serial.println();
     }
     else if (video_data > 31)
     {
       // Display-compatible character.
+      hide_cursor();
+      Serial.print(COLOR);
       Serial.print((char)video_data);
+      Serial.print(OFF);
     }
 
     digitalWrite(RDA, LOW);
     delay(10);
   }
+  else
+  {
+    show_cursor();
+  }
 }
 
+/*
+ * Processes data received from the serial connection.
+ * Puts the received data on to the PIA where the CPU will read it from.
+ */
 void process_serial_data()
 {
   // Wait for serial data coming in.
@@ -133,5 +175,31 @@ void process_serial_data()
       delay(20);
       digitalWrite(STROBE, LOW);
     }
+  }
+}
+
+/*
+ * Remove the cursor character from the screen by sending a backspace.
+ */
+void hide_cursor()
+{
+  if (cursor_visible)
+  {
+    Serial.print(BACKSPACE);
+    cursor_visible = false;
+  }
+}
+
+/*
+ * Display blinking cursor character.
+ */
+void show_cursor()
+{
+  if (!cursor_visible)
+  {
+    Serial.print(BLINK_COLOR);
+    Serial.print(CURSOR_CHAR);
+    Serial.print(OFF);
+    cursor_visible = true;
   }
 }
