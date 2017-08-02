@@ -1,92 +1,127 @@
-// -----------------------------------------------------------------------------
-// Apple 1 Replica firmware for Arduino
-//
-// Version 1.0
-// By Ruud van Falier
-//
-// Enables serial communication between an Arduino and the Apple 1 PIA.
-// Heavily based on Propeller source code from Briel Computers Apple 1 replica.
-// -----------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------- //
+// Apple 1 Replica firmware for Arduino                                               //
+//                                                                                    //
+// Version 1.0                                                                        //
+// By Ruud van Falier                                                                 //
+//                                                                                    //
+// Enables serial communication between an Arduino and the Apple 1 PIA.               //
+// Also implements a blinking cursor and green text using VT100 escape codes          //
+// (VT100 codes only tested with PuTTY client!)                                       //
+//                                                                                    //
+// Heavily based on Propeller source code from Briel Computers' Apple 1 replica.      //
+// ---------------------------------------------------------------------------------- //
 
 // Port definitions (Arduino pins connected to the PIA)
-#define DA  A0
-#define RDA A1
-#define PB0 2
-#define PB1 3
-#define PB2 4
-#define PB3 A5
-#define PB4 A4
-#define PB5 A3
-#define PB6 A2
-#define PA0 5
-#define PA1 6
-#define PA2 7
-#define PA3 8
-#define PA4 9
-#define PA5 10
-#define PA6 11
-#define STROBE 12
+#define PIN_DA  A0
+#define PIN_RDA A1
+#define PIN_PB0 2
+#define PIN_PB1 3
+#define PIN_PB2 4
+#define PIN_PB3 A5
+#define PIN_PB4 A4
+#define PIN_PB5 A3
+#define PIN_PB6 A2
+#define PIN_PA0 5
+#define PIN_PA1 6
+#define PIN_PA2 7
+#define PIN_PA3 8
+#define PIN_PA4 9
+#define PIN_PA5 10
+#define PIN_PA6 11
+#define PIN_STROBE 12
 
-// VT100 codes (u)sed for cursor implementation)
-#define OFF         "\033[0m"
-#define BLINK       "\033[5m"
-#define COLOR       "\033[35m"
-#define BLINK_COLOR "\033[5;35m"
-#define BOLD_COLOR  "\033[1;35m"
-#define CLS         "\033[2J"
-#define BACKSPACE   "\010"
-#define CURSOR_CHAR "@"
+#define DELAY_VIDEO 1
+#define DELAY_ASCII 1
 
+// VT100 codes (used for cursor and text color implementation)
+#define VT100_OFF           "\033[0m"     // Disable formatting
+#define VT100_DEFAULT       "\033[32m"    // Color green
+#define VT100_BLINK         "\033[5;32m"  // Blink color green
+#define VT100_BOLD          "\033[1;32m"  // Bold color green
+#define VT100_CLS           "\033[2J"     // Clear screen
+#define VT100_RESET_CURSOR  "\033[H"      // Position cursor in top left corner
+#define VT100_CURSOR_LEFT   "\033[1D"     // Move cursor one column to the left
+#define VT100_ERASE_EOL     "\033[K"      // Erase from cursor until end of line
+#define CURSOR_CHAR   "@"
+
+// Global variables
 uint8_t video_data = 0;
-uint8_t video_data_pins[] = { PB0, PB1, PB2, PB3, PB4, PB5, PB6 };
+uint8_t video_data_pins[] = { PIN_PB0, PIN_PB1, PIN_PB2, PIN_PB3, PIN_PB4, PIN_PB5, PIN_PB6 };
 uint8_t serial_data;
+
 bool cursor_visible = false;
 
+/*
+ * Program initialization
+ */
 void setup() 
 {
   // Setup video data pins (output from the PIA)
-  pinMode(RDA, OUTPUT);
-  pinMode(DA, INPUT);
-  pinMode(PB0, INPUT);
-  pinMode(PB1, INPUT);
-  pinMode(PB2, INPUT);
-  pinMode(PB3, INPUT);
-  pinMode(PB4, INPUT);
-  pinMode(PB5, INPUT);
-  pinMode(PB6, INPUT);
+  pinMode(PIN_RDA, OUTPUT);
+  pinMode(PIN_DA, INPUT);
+  pinMode(PIN_PB0, INPUT);
+  pinMode(PIN_PB1, INPUT);
+  pinMode(PIN_PB2, INPUT);
+  pinMode(PIN_PB3, INPUT);
+  pinMode(PIN_PB4, INPUT);
+  pinMode(PIN_PB5, INPUT);
+  pinMode(PIN_PB6, INPUT);
 
   // Setup ASCII data pins (input for the PIA)
-  pinMode(STROBE, OUTPUT);
-  pinMode(PA0, OUTPUT);
-  pinMode(PA1, OUTPUT);
-  pinMode(PA2, OUTPUT);
-  pinMode(PA3, OUTPUT);
-  pinMode(PA4, OUTPUT);
-  pinMode(PA5, OUTPUT);
-  pinMode(PA6, OUTPUT);
+  pinMode(PIN_STROBE, OUTPUT);
+  pinMode(PIN_PA0, OUTPUT);
+  pinMode(PIN_PA1, OUTPUT);
+  pinMode(PIN_PA2, OUTPUT);
+  pinMode(PIN_PA3, OUTPUT);
+  pinMode(PIN_PA4, OUTPUT);
+  pinMode(PIN_PA5, OUTPUT);
+  pinMode(PIN_PA6, OUTPUT);
 
   Serial.begin(9600);
  
-  cursor_visible = false;
-  Serial.print(CLS);
-  Serial.print(BOLD_COLOR);
-  Serial.println("Apple 1 Replica");
-  Serial.print(OFF);
-  Serial.print(COLOR);
-  Serial.println("Firmware version 1.0");
-  Serial.println("Ruud van Falier, 2017");
-  Serial.println("---------------------------------");
-  Serial.println();
-  Serial.println("Ready...");
-  Serial.print(OFF);
-
-  show_cursor();
+  display_boot_message();
 }
 
+/*
+ * Program loop
+ */
 void loop() 
 {
   process_video_data();
   process_serial_data(); 
+}
+
+/*
+ * Displays the Apple 1 Replica firmware boot message and enables the blinking cursor
+ */
+void display_boot_message()
+{
+  cursor_visible = false;
+
+  Serial.print(VT100_CLS);
+  Serial.print(VT100_RESET_CURSOR);
+  Serial.print(VT100_OFF);
+  Serial.print(VT100_DEFAULT);
+  Serial.println("+-----------------------+");
+  Serial.print("|    ");
+  Serial.print(VT100_OFF);
+  Serial.print(VT100_BOLD);
+  Serial.print("APPLE 1 REPLICA");
+  Serial.print(VT100_OFF);
+  Serial.print(VT100_DEFAULT);
+  Serial.println("    |");
+  Serial.print(VT100_OFF);
+  Serial.print(VT100_DEFAULT);
+  Serial.println("|-----------------------|");
+  Serial.println("| FIRMWARE VERSION 1.0  |");
+  Serial.println("| RUUD VAN FALIER, 2017 |");
+  Serial.println("+-----------------------+");
+  Serial.println();
+  Serial.println("READY...");
+  Serial.println();
+  Serial.print(VT100_OFF);
+
+  show_cursor();
 }
 
 /*
@@ -95,10 +130,10 @@ void loop()
 void process_video_data()
 {
   // Tell the PIA we are ready to receive data.
-  digitalWrite(RDA, HIGH);
-  delay(10);
+  digitalWrite(PIN_RDA, HIGH);
+  delay(DELAY_VIDEO);
 
-  if (digitalRead(DA))
+  while (digitalRead(PIN_DA))
   {
     // Data is available.
     video_data = 0;
@@ -112,6 +147,7 @@ void process_video_data()
       }
     }
 
+    // Send video data over serial connection.
     if (video_data == 13)
     {
       // Carrage return.
@@ -122,18 +158,21 @@ void process_video_data()
     {
       // Display-compatible character.
       hide_cursor();
-      Serial.print(COLOR);
+      Serial.print(VT100_DEFAULT);
       Serial.print((char)video_data);
-      Serial.print(OFF);
+      Serial.print(VT100_OFF);
     }
 
-    digitalWrite(RDA, LOW);
-    delay(10);
+    // Done receiving this byte.
+    digitalWrite(PIN_RDA, LOW);
+    delay(DELAY_VIDEO);
+
+    // Tell the PIA we are ready to receive more data.
+    digitalWrite(PIN_RDA, HIGH);
+    delay(DELAY_VIDEO);
   }
-  else
-  {
-    show_cursor();
-  }
+
+  show_cursor();
 }
 
 /*
@@ -143,7 +182,7 @@ void process_video_data()
 void process_serial_data()
 {
   // Wait for serial data coming in.
-  if (Serial.available() > 0) 
+  while (Serial.available() > 0)
   {
     serial_data = Serial.read();
 
@@ -162,19 +201,21 @@ void process_serial_data()
     if (serial_data < 96)   
     {
       // Encode any Apple 1 compatible character to data bits.
-      digitalWrite(PA6, bitRead(serial_data, 6));
-      digitalWrite(PA5, bitRead(serial_data, 5));
-      digitalWrite(PA4, bitRead(serial_data, 4));
-      digitalWrite(PA3, bitRead(serial_data, 3));
-      digitalWrite(PA2, bitRead(serial_data, 2));
-      digitalWrite(PA1, bitRead(serial_data, 1));
-      digitalWrite(PA0, bitRead(serial_data, 0));
+      digitalWrite(PIN_PA6, bitRead(serial_data, 6));
+      digitalWrite(PIN_PA5, bitRead(serial_data, 5));
+      digitalWrite(PIN_PA4, bitRead(serial_data, 4));
+      digitalWrite(PIN_PA3, bitRead(serial_data, 3));
+      digitalWrite(PIN_PA2, bitRead(serial_data, 2));
+      digitalWrite(PIN_PA1, bitRead(serial_data, 1));
+      digitalWrite(PIN_PA0, bitRead(serial_data, 0));
 
       // Pulse the STROBE bit so the PIA will process the input.
-      digitalWrite(STROBE, HIGH);
-      delay(20);
-      digitalWrite(STROBE, LOW);
+      digitalWrite(PIN_STROBE, HIGH);
+      delay(DELAY_ASCII);
+      digitalWrite(PIN_STROBE, LOW);
     }
+
+    process_video_data();
   }
 }
 
@@ -185,7 +226,8 @@ void hide_cursor()
 {
   if (cursor_visible)
   {
-    Serial.print(BACKSPACE);
+    Serial.print(VT100_CURSOR_LEFT);
+    Serial.print(VT100_ERASE_EOL);
     cursor_visible = false;
   }
 }
@@ -197,9 +239,9 @@ void show_cursor()
 {
   if (!cursor_visible)
   {
-    Serial.print(BLINK_COLOR);
+    Serial.print(VT100_BLINK);
     Serial.print(CURSOR_CHAR);
-    Serial.print(OFF);
+    Serial.print(VT100_OFF);
     cursor_visible = true;
   }
 }

@@ -1,2 +1,5 @@
 tmp/
 design/DesignSpark/gbrl
+obj
+bin
+.vs
