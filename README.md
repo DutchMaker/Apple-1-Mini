@@ -6,7 +6,11 @@ Also lot's of lessons were learned and resources taken from The Ben Heck Show: h
 
 *This build is currently in progress*
 
+The current state is that the board is working and only supports serial connection through the Arduino.  
+The board itself is still in its first revision and is going to be significantly shrinked for the next revision.  
+I am planning to release revision 1 as a kit that supports expansion cards for future development.
+
 Pictures of the current state (revision 0):  
 
-![First board revision](https://github.com/DutchMaker/Apple-1-Replica/raw/master/docs/revision0.jpg "First board revision")  
-![Firmware screenshot](https://github.com/DutchMaker/Apple-1-Replica/raw/master/docs/screenshot.png "Firmware screenshot")
+<img src="https://github.com/DutchMaker/Apple-1-Replica/raw/production-revision/docs/revision0.jpg" width="450" />
+<img src="https://github.com/DutchMaker/Apple-1-Replica/raw/production-revision/docs/screenshot.png" width="450" />
