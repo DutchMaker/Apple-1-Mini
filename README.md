@@ -8,7 +8,7 @@ Also lot's of lessons were learned and resources taken from The Ben Heck Show: h
 
 The current state is that the board is working, but only supports serial connection through the Arduino.  
 The board itself is still in its first revision and is going to be significantly shrinked in size for the next revision.  
-I am planning to release revision 1 as a kit that supports expansion cards for future development.  
+**I am planning to release revision 1 as a kit! It will include the board and most components for a fully functional Apple 1 that can be controlled via a serial connection, with support for expansion cards for future development.**  
 
 Pictures of the current state (revision 0):  
 
