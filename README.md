@@ -8,5 +8,5 @@ Also lot's of lessons were learned and resources taken from The Ben Heck Show: h
 
 Pictures of the current state (revision 0):  
 
-![First board revision](https://github.com/DutchMaker/Apple-1-Replica/raw/master/docs/revision0.jpg "First board revision")  
-![Firmware screenshot](https://github.com/DutchMaker/Apple-1-Replica/raw/master/docs/screenshot.png "Firmware screenshot")
+<img src="https://github.com/DutchMaker/Apple-1-Replica/raw/production-revision/docs/revision0.jpg" width="450" />
+<img src="https://github.com/DutchMaker/Apple-1-Replica/raw/production-revision/docs/screenshot.png" width="450" />
