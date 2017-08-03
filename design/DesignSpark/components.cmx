@@ -5,5 +5,6 @@
 6821 PIA||#DIL=40=40DIL||@Manufacturer_Part_Number=||@Manufacturer_Name=||@RS Part Number=||@Allied_Number=||@Other Part Number=||@3D Package=||@Height=
 62256 RAM||#DIL=28=28DIL||@Manufacturer_Part_Number=||@Manufacturer_Name=||@RS Part Number=||@Allied_Number=||@Other Part Number=||@3D Package=||@Height=
 ARDUINO NANO||#DIL=30=ARDUINO NANO||@RS Part Number=||@Allied_Number=||@Manufacturer_Name=||@Manufacturer_Part_Number=||@Other Part Number=||@3D Package=||@Height=
+DC-CONNECTOR||#DC-CONNECTOR=3=DC-CONNECTOR||@[Description]=DC Powered Thermoplastic Jack Connector Right Angle DC Power Plug Rated At 5A, PCB Mount, length 14.5mm, Nickel Plate||@RS Part Number=8786787||@Allied_Number=70214249||@Manufacturer_Name=Switchcraft||@Manufacturer_Part_Number=RAPC722X||@Supplier_Name=RS||@Other Part Number=||@Datasheet Link=http://www.switchcraft.com/Drawings/rapc722x_cd.pdf||@3D Package=||@Height=
 SN74LS00||#DIL=14=14DIL||@RS Part Number=||@Allied_Number=||@Mfr=TI||@Manufacturer_Name=||@Manufacturer_Part_Number=||@Other Part Number=||@3D Package=||@Height=
 XTAL-OSCILLATOR||#DIL=14=XTAL-OSCILLATOR||@Manufacturer_Part_Number=||@Manufacturer_Name=||@RS Part Number=||@Allied_Number=||@Other Part Number=||@3D Package=||@Height=
