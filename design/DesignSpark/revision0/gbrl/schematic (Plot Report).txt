@@ -1,0 +1,217 @@
+Plot Report
+-----------
+
+Report Written:     Thursday, July 20, 2017
+Design Path:        E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic.pcb
+Design Title:       
+Created:            20-7-2017 11:04:34
+Last Saved:         20-7-2017 21:08:31
+Editing Time:       603 min
+Units:              mm (precision 1)
+
+
+Device Settings
+===============
+
+
+Gerber Settings
+===============
+
+    Leading zero suppression.
+    G01 assumed throughout.
+    Line termination <*> <CR> <LF>.
+    3.5 format absolute inches.
+    Format commands defined in Gerber file.
+    Aperture table defined in Gerber file.
+    Hardware arcs allowed.
+
+
+Drill Settings
+==============
+
+    Excellon Format 1    Format 3.5 absolute in inches.
+    No zero suppression.
+
+
+Plots Output
+============
+
+    Plot Job: "E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic.mop"
+
+
+Gerber Output
+=============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Top Silkscreen.gbr
+
+    Layers:
+    ------------------
+    Top Silkscreen
+    Board Outlines
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 19.69
+    D11    Round 7.87
+    D12    Round 5.00
+    D13    Round 6.00
+    D14    Round 3.00
+    D15    Round 10.00
+    D16    Round 16.00
+    D17    Round 12.00
+
+Gerber Output
+=============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Top Copper.gbr
+
+    Layers:
+    --------------
+    Top Copper
+
+    D-Code Shape  (thou)
+    ------------------------------------------
+    D12    Round 5.00
+    D15    Round 10.00
+    D18    Round 196.85
+    D19    Oval 60.00 X 110.00  Rotation 90
+    D70    Round 60.00
+    D71    Square 60.00
+    D20    Oval 60.00 X 110.00
+    D21    Round 70.00
+    D22    Round 86.00
+    D23    Round 56.00
+    D24    Round 20.00
+    D25    Round 32.00
+
+Gerber Output
+=============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Top Copper (Resist).gbr
+
+    Layers:
+    --------------
+    Top Copper
+
+    D-Code Shape  (thou)
+    ------------------------------------------
+    D26    Round 206.85
+    D27    Oval 70.00 X 120.00  Rotation 90
+    D28    Round 70.00
+    D29    Square 70.00
+    D72    Oval 70.00 X 120.00
+    D73    Round 80.00
+    D74    Round 96.00
+
+Gerber Output
+=============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Bottom Copper.gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    ------------------------------------------
+    D12    Round 5.00
+    D15    Round 10.00
+    D18    Round 196.85
+    D19    Oval 60.00 X 110.00  Rotation 90
+    D70    Round 60.00
+    D71    Square 60.00
+    D21    Round 70.00
+    D22    Round 86.00
+    D23    Round 56.00
+    D24    Round 20.00
+    D25    Round 32.00
+    D75    Oval 60.00 X 110.00
+
+Gerber Output
+=============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Bottom Copper (Resist).gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    ------------------------------------------
+    D26    Round 206.85
+    D27    Oval 70.00 X 120.00  Rotation 90
+    D28    Round 70.00
+    D29    Square 70.00
+    D72    Oval 70.00 X 120.00
+    D73    Round 80.00
+    D74    Round 96.00
+
+NC Drill Output
+===============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Drill Data - [Through Hole].drl
+
+    Output:
+    ---------------------------
+    Plated Round Drill Holes
+    Plated Slots
+    Plated Board Outlines
+
+    Tool  Size         Count   ID
+    ------------------------------------
+    T001  000.01600 in 363
+    T002  000.03200 in 272
+    T003  000.03500 in 72
+    T004  000.03937 in 4
+    T005  000.04200 in 3
+    T006  000.06200 in 2
+    T007  000.11811 in 4
+    ------------------------------------
+    Total              720
+    ------------------------------------
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Drill Data - [Through Hole] (Unplated).drl
+
+    Output:
+    -----------------------------
+    Unplated Round Drill Holes
+    Unplated Slots
+    Unplated Board Outlines
+
+    Tool  Size         Count   ID
+    ------------------------------------
+    T001  000.02500 in 1
+    ------------------------------------
+    Total              1
+    ------------------------------------
+
+
+Gerber Output
+=============
+
+E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic - Drill Ident Drawing - [Through Hole].gbr
+
+    Layers:
+    ------------------
+    [Through Hole]
+
+
+Drill Ident Drawing
+===================
+
+    Drill Plated Size Shape ID
+    -----------------------------------
+    118   Y      100  Round A
+    32    Y      100  Round B
+    35    Y      100  Round C
+    39    Y      100  Round D
+    42    Y      100  Round E
+    62    Y      100  Round F
+    16    Y      100  Round G
+
+    D-Code Shape  (thou)
+    -----------------------
+    D12    Round 5.00
+    D76    Round 100.00
+
+End Of Report.

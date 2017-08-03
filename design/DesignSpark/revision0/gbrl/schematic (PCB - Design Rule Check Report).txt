@@ -1,0 +1,68 @@
+Design Rule Check Report
+------------------------
+
+Report Written:     Thursday, July 20, 2017
+Design Path:        E:\Personal\Projects\Apple-1-Replica\design\DesignSpark\schematic.pcb
+Design Title:       
+Created:            20-7-2017 11:04:34
+Last Saved:         20-7-2017 21:15:16
+Editing Time:       603 min
+Units:              mm (precision 1)
+
+
+Results
+=======
+
+Single pin net CLOCK_PH1 on U1.3 at 226.7,289.6
+Single pin net N0000 on Pad at 319.9,337.2
+Single pin net N0001 on Pad at 319.9,188.6
+Single pin net N0002 on Pad at 172.1,337.2
+Single pin net N0003 on Pad at 172.1,188.6
+
+Number of errors found : 5
+
+
+Settings
+========
+
+
+Spacings
+
+=========
+
+Tracks        No
+Pads and Vias No
+Shapes        No
+Text          No
+Board         No
+Drills        No
+Components    No
+
+
+Manufacturing
+
+==============
+
+Drill Breakout                  Yes
+Drill Backoff                   Yes
+Silkscreen Overlap              No
+Copper Text In Board            Yes
+Min Track Width                 Yes
+Min Annular Ring                Yes
+Min Paste Size                  Yes
+Vias In Pads                    Yes
+Unplated Vias                   Yes
+Unplated Pads With Inner Tracks Yes
+
+
+Nets
+
+=====
+
+Net Completion               Yes
+Dangling Tracks              Yes
+Net Track Length Differences No
+
+
+
+End Of Report.
