@@ -2,17 +2,16 @@
 
 *This build is currently in progress*
 
-This project is a shrinked replica of the Apple 1.  
-It's built around a 6502 CPU, 6821 PIA (Peripheral Interface Adapter), RAM and ROM chip - just like the original Apple 1.  
-But it uses an Arduino Nano to enable serial communication between the Apple 1 board and an external computer that acts as terminal.  
-That means you can't hook up a keyboard and monitor directly to the board (yet).  
+This project is a minified replica of the [**Apple 1**](https://en.wikipedia.org/wiki/Apple_I).  
+It's built around a 6502 CPU, 6821 PIA (Peripheral Interface Adapter), RAM and ROM - just like the original Apple 1, but it uses an Arduino Nano to enable serial communication between the Apple 1 board and an external computer that acts as terminal.  
+That means you can't hook up a keyboard and monitor directly to the board (yet!).  
 
 The project is heavily inspired by the [*Briel Computers Apple 1 Replica*](http://www.brielcomputers.com/wordpress/?cat=17) and [*The Ben Heck Show*](https://github.com/thebenheckshow/158-tbhs-apple-1-replica)!
 
 **What I have done:**
 - [Redesigned the circuit](https://github.com/DutchMaker/Apple-1-Mini/blob/master/design/DesignSpark/revision1/schematic%20-%20Schematic.pdf) so I would fully understand every aspect of it.
 - Designed a PCB that can be easily produced and included in a **modular DIY kit** for anyone that wants to build this at home.
-- Programmed the ROM so it only contains BASIC and the Woz Monitor (memory monitor).
+- Programmed the ROM so it only contains BASIC, Krusader (assembler) and the Woz Monitor (memory monitor).
 - Written firmware for the Arduino to enable serial communication in a way that gives the real *Apple 1 feeling*.
 - Written a simple utility to upload data to the computer. This proved to be difficult with existing tools as there need to be specific delays in sending the data.
 
@@ -22,6 +21,8 @@ The project is heavily inspired by the [*Briel Computers Apple 1 Replica*](http:
 - Release several varations of a DIY kit for this project (PCB only, PCB + passives, PCB + passives + casing, complete kit, etc.) so others can easily build the computer at home.
 
 **Pictures of revision 0 (very first PCB based on the schematic to verify that it functions properly):**
-<img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/revision0.jpg" width="450" />
-<img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/screenshot.png" width="450" />
+*(Revision 1, which is designated to be the first production revision, is currently being tested)*  
+
+<img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/revision0.jpg" width="450" />  
+<img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/screenshot.png" width="450" />  
 <img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/running_basic.png" width="240" />
