@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------------- //
-// Apple 1 Replica firmware for Arduino                                               //
+// Apple 1 Mini firmware for Arduino                                                  //
 //                                                                                    //
 // Version 1.0                                                                        //
 // By Ruud van Falier                                                                 //
@@ -103,13 +103,13 @@ void display_boot_message()
   Serial.print(VT100_OFF);
   Serial.print(VT100_DEFAULT);
   Serial.println("+-----------------------+");
-  Serial.print("|    ");
+  Serial.print("|     ");
   Serial.print(VT100_OFF);
   Serial.print(VT100_BOLD);
-  Serial.print("APPLE 1 REPLICA");
+  Serial.print("APPLE 1 MINI");
   Serial.print(VT100_OFF);
   Serial.print(VT100_DEFAULT);
-  Serial.println("    |");
+  Serial.println("      |");
   Serial.print(VT100_OFF);
   Serial.print(VT100_DEFAULT);
   Serial.println("|-----------------------|");
