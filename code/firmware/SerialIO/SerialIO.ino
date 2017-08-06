@@ -102,8 +102,8 @@ void display_boot_message()
   Serial.print(VT100_RESET_CURSOR);
   Serial.print(VT100_OFF);
   Serial.print(VT100_DEFAULT);
-  Serial.println("+-----------------------+");
-  Serial.print("|     ");
+  Serial.println("+------------------------+");
+  Serial.print("|      ");
   Serial.print(VT100_OFF);
   Serial.print(VT100_BOLD);
   Serial.print("APPLE 1 MINI");
@@ -112,10 +112,10 @@ void display_boot_message()
   Serial.println("      |");
   Serial.print(VT100_OFF);
   Serial.print(VT100_DEFAULT);
-  Serial.println("|-----------------------|");
-  Serial.println("| FIRMWARE VERSION 1.0  |");
-  Serial.println("| RUUD VAN FALIER, 2017 |");
-  Serial.println("+-----------------------+");
+  Serial.println("|------------------------|");
+  Serial.println("| FIRMWARE VERSION 1.0   |");
+  Serial.println("| RUUD VAN FALIER, 2017  |");
+  Serial.println("+------------------------+");
   Serial.println();
   Serial.println("READY...");
   Serial.println();
