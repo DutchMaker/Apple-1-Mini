@@ -23,6 +23,6 @@ The project is heavily inspired by the [*Briel Computers Apple 1 Replica*](http:
 **Pictures of revision 0 (very first PCB based on the schematic to verify that it functions properly):**  
 *(Revision 1, which is designated to be the first production revision, is currently being tested)*  
 
-<img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/revision0.jpg" width="450" />  
+<img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/revision1.jpg" width="450" />  
 <img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/screenshot.png" width="450" />  
 <img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/running_basic.png" width="240" />
