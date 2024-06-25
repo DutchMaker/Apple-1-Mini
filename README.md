@@ -20,6 +20,10 @@ The project is heavily inspired by the [*Briel Computers Apple 1 Replica*](http:
 - Design a modular casing with laser cut parts. The casing will house the main board, but additional layers can be put on top of it to increase its size and allow for expansion boards to be added later on.
 - Release several varations of a DIY kit for this project (PCB only, PCB + passives, PCB + passives + casing, complete kit, etc.) so others can easily build the computer at home.
 
+**UPDATE (June 2024): Printer & SD storage support**
+[Simon Boak](https://github.com/simonboak/SB-A1) has added [printer and SD storage support](​https://unimplementedtrap.com/apple-1-with-printer-sd-storage) to the firmware.  
+Make sure to check out his excellent contribution!
+
 **Pictures of revision 1:**  
 
 <img src="https://github.com/DutchMaker/Apple-1-Mini/raw/master/docs/revision1.jpg" width="450" />  
