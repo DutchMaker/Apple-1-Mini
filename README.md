@@ -21,8 +21,9 @@ The project is heavily inspired by the [*Briel Computers Apple 1 Replica*](http:
 - Release several varations of a DIY kit for this project (PCB only, PCB + passives, PCB + passives + casing, complete kit, etc.) so others can easily build the computer at home.
 
 **UPDATE (June 2024): Printer & SD storage support**  
-[Simon Boak](https://github.com/simonboak/SB-A1) has added [printer and SD storage support](​https://unimplementedtrap.com/apple-1-with-printer-sd-storage) to the firmware.  
-Make sure to check out his excellent contribution!
+[Simon Boak](https://github.com/simonboak/SB-A1) has added printer and SD storage support to the firmware.  
+Read all about it in his detailed blog post: https://unimplementedtrap.com/apple-1-with-printer-sd-storage  
+Thank you for this excellent contribution, Simon!
 
 **Pictures of revision 1:**  
 
